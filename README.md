@@ -1,115 +1,150 @@
-# 🔐 Daily Approval Rate Data Pipeline
+VisaNet Authorization Performance Pipeline
 
-This project simulates a real-world data pipeline that calculates and visualizes daily transaction approval rates. Built using **Python**, **Airflow**, and **Tableau**, it demonstrates how to orchestrate ETL workflows, summarize transaction metrics, and communicate insights through a clean dashboard.
+This project simulates a real-world authorization monitoring pipeline, inspired by how payment networks like VisaNet track transaction approval and decline rates daily to ensure reliability and detect anomalies.
 
----
+Built with Python, Apache Airflow, and Tableau, it demonstrates end-to-end orchestration of data workflows — from data ingestion and transformation to KPI visualization and insight delivery.
 
-## 🚀 Overview
+Overview
 
-- ✅ Simulate daily merchant transaction data (approved/declined)
-- 🐍 Python script to calculate approval KPIs
-- 🗂️ Save outputs as CSV for visualization
-- 🛠️ Schedule with Apache Airflow
-- 📊 Build interactive dashboard in Tableau
+Simulate daily merchant transaction data (approved and declined)
 
----
+Automate KPI calculations using Python ETL scripts
 
-## 📁 Project Structure
+Schedule workflows using Apache Airflow
+
+Save daily outputs as CSV for analysis
+
+Build and visualize KPIs in Tableau
+
+Project Structure
 
 auth-approval-pipeline/
+│
 ├── airflow_dags/
-│ ├── auth_pipeline_dag.py
-│ └── images/
-│ ├── Screenshot_1.png
-│ ├── Screenshot_2.png
-│ └── Screenshot_3.png
-├── dashboard/
-│ └── Tableau_Screenshot.twb
+│   └── auth_pipeline_dag.py
+│
 ├── data/
-│ ├── daily_transactions.csv
-│ └── daily_approval_summary.csv
+│   ├── daily_transactions.csv
+│   └── daily_approval_summary.csv
+│
+├── dashboard/
+│   └── Tableau_Screenshot.twb
+│
+├── images/
+│   └── volume_trend_comparison.png
+│
 ├── notebooks/
 ├── sql/
 ├── requirements.txt
 └── README.md
 
-----
+How It Works
+1. Simulated Dataset
 
+daily_transactions.csv represents four days of merchant transactions with fields such as status, amount, and timestamp.
 
----
+2. Python DAG (auth_pipeline_dag.py)
 
-## ⚙️ How It Works
+Reads the transaction dataset
 
-1. **Simulated Dataset**: `daily_transactions.csv` contains 4 days of merchant transactions with fields like `status`, `amount`, and `timestamp`.
+Calculates approved and declined counts
 
-2. **Python DAG**: `auth_pipeline_dag.py`:
-   - Reads raw CSV data
-   - Calculates total, approved, and declined transaction counts
-   - Derives daily approval rate percentage
-   - Saves `daily_approval_summary.csv` to the `data/` folder
+Derives daily approval rate (%)
 
-3. **Airflow**: Schedules and runs the DAG daily.
+Saves the results to daily_approval_summary.csv
 
-4. **Tableau Dashboard**: Displays approval trends, volumes, and performance summaries.
+3. Apache Airflow
 
----
+Orchestrates and schedules the ETL pipeline daily
 
-### 📊 KPI Summary Dashboard  
-<img src="airflow_dags/images/kpi_summary_dashboard.png" alt="KPI Summary Dashboard" width="600"/>
+Automates data refresh and reproducibility
 
-### 📈 Approval vs Decline Volume  
-<img src="airflow_dags/images/approval_vs_decline_volume.png" alt="Approval vs Decline" width="600"/>
+4. Tableau Dashboard
 
-### 📉 Auth Trend Chart  
-<img src="airflow_dags/images/auth_trend_chart.png" alt="Authorization Trend" width="600"/>
+Visualizes approval vs decline trends
 
-### 🔄 Volume Trend Comparison  
+Highlights performance KPIs and potential anomalies
+
+Volume Trend Comparison
 <img src="airflow_dags/images/volume_trend_comparison.png" alt="Volume Trend Comparison" width="600"/>
+Key Performance Indicators (KPIs)
+Metric	Description
+Approval Rate (%)	Ratio of approved to total transactions
+Decline Rate (%)	Ratio of declined to total transactions
+Transaction Volume	Total daily transaction count
+Decline Spike Alert	Highlights abnormal decline patterns
+Business Value
 
+Provides daily transparency into transaction health
 
+Detects issuer or merchant decline surges in real time
 
----
+Supports fraud and operations teams with actionable insights
 
-## ✅ What I Learned
+Establishes a foundation for scalable VisaNet-style monitoring pipelines
 
-- Orchestrating data workflows using **Airflow**
-- Writing modular Python ETL scripts with **Pandas**
-- Calculating approval metrics across multiple days
-- Creating clear and visual **Tableau** dashboards
-- Managing code and assets using **Git & GitHub**
+What I Learned
 
----
+Designing and automating ETL workflows with Apache Airflow
 
-## 📌 Challenges Faced
+Writing modular Python and Pandas scripts for metric computation
 
-- Simulating realistic transaction data for test purposes  
-- Dynamically calculating metrics from raw CSV input  
-- Rendering images correctly on GitHub  
-- Balancing dashboard clarity with clean design  
+Translating engineering output into business KPIs
 
----
+Creating clear, data-driven dashboards in Tableau
 
-## 🚧 Next Steps
+Managing workflow code with Git and GitHub
 
-- Add **email alerts** on DAG failure in Airflow  
-- Upload dashboard to **Streamlit** for stakeholder demo  
-- Connect to cloud storage or data warehouse (e.g., **Snowflake**, **BigQuery**)  
+Challenges Faced
 
----
+Generating realistic merchant transaction data
 
-## 💻 Tech Stack
+Dynamically calculating metrics from raw CSV input
 
-- Python 3.10  
-- Apache Airflow  
-- Pandas  
-- Tableau  
-- Git / GitHub  
+Rendering Tableau screenshots properly on GitHub
 
----
+Balancing dashboard clarity with analytical depth
 
-## 🧠 Author
+Next Steps
 
-**Myke Tzul** – [LinkedIn](https://www.linkedin.com/in/mykeil-tzul) | [GitHub](https://github.com/Mykeil-tzul)
+Add email alerts for Airflow DAG failures and threshold breaches
+
+Migrate data storage to Snowflake for cloud scalability
+
+Deploy a Streamlit interface for real-time monitoring
+
+Integrate anomaly detection (Isolation Forest or Z-score analysis)
+
+Tech Stack
+
+Python 3.10
+
+Apache Airflow
+
+Pandas
+
+Tableau
+
+Git / GitHub
+
+Author
+
+Mykeil Tzul
+LinkedIn
+ | GitHub
+
+Summary
+
+This project bridges the gap between data engineering and business intelligence, demonstrating the ability to:
+
+Automate and schedule production-style data workflows
+
+Derive meaningful KPIs from raw transactional data
+
+Present insights through clear, executive-ready visuals
+
+It represents a complete end-to-end data pipeline, mirroring how real Visa authorization data would be processed and analyzed at scale.
+
 
 
 
