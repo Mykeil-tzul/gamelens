@@ -4,7 +4,7 @@ This project simulates a real-world authorization monitoring pipeline, inspired 
 
 Built with Python, Apache Airflow, and Tableau, it demonstrates end-to-end orchestration of data workflows — from ingestion and transformation to KPI visualization and business insights.
 
-# Overview
+## Overview
 
 Simulates daily merchant transaction data (approved and declined)
 
@@ -16,7 +16,7 @@ Stores outputs as CSV files for analysis
 
 Visualizes key metrics in Tableau
 
-# Project Structure
+## Project Structure
 auth-approval-pipeline/
 │
 ├── airflow_dags/
@@ -37,7 +37,7 @@ auth-approval-pipeline/
 ├── requirements.txt
 └── README.md
 
-# How It Works
+## How It Works
 ## 1. Simulated Dataset
 
 daily_transactions.csv represents four days of merchant transactions with fields such as status, amount, and timestamp.
@@ -65,7 +65,7 @@ Visualizes approval vs. decline trends
 Highlights performance KPIs and potential anomalies
 
 
-# 📊 Volume Trend Comparison
+## 📊 Volume Trend Comparison
 <img src="airflow_dags/images/volume_trend_comparison.png" alt="Volume Trend Comparison" width="600"/>
 
 
@@ -101,7 +101,7 @@ Creating clear, data-driven dashboards with Tableau
 
 Managing workflow code with Git and GitHub
 
-# Challenges Faced
+## Challenges Faced
 
 Generating realistic merchant transaction data
 
@@ -111,7 +111,7 @@ Rendering Tableau screenshots cleanly on GitHub
 
 Balancing dashboard clarity with analytical depth
 
-# Next Steps
+## Next Steps
 
 Add email alerts for Airflow DAG failures or threshold breaches
 
@@ -121,7 +121,7 @@ Deploy a Streamlit interface for real-time monitoring
 
 Integrate anomaly detection (Isolation Forest or Z-score analysis)
 
-# Tech Stack
+## Tech Stack
 
 Python 3.10
 
@@ -134,7 +134,7 @@ Tableau
 Git / GitHub
 
 
-🏁 Summary
+## 🏁 Summary
 
 This project bridges data engineering and business intelligence, demonstrating the ability to:
 
@@ -145,6 +145,7 @@ Derive meaningful KPIs from raw transactional data
 Present insights through clear, executive-ready visuals
 
 It represents a complete end-to-end data pipeline, mirroring how real Visa authorization data would be processed and analyzed at scale.
+
 
 
 
