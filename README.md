@@ -1,22 +1,29 @@
 # GameLens
 
-[Open the film room](https://mykeil-tzul.github.io/gamelens/)
+[**Open the live GameLens film room**](https://mykeil-tzul.github.io/gamelens/)
 
-I built GameLens to help coaches and players review crowded basketball clips. The film room pairs original footage with a computer vision overlay. You can replay both videos, slow them down, and download the annotated clip and its track data. The local Streamlit app adds a frame inspector and a plot for each track.
+I built GameLens because reviewing game film as a player taught me how much you can miss at full speed. It puts the original play beside a computer vision overlay so a player or coach can replay the action, slow it down, and see where the tracker follows someone or loses them in traffic.
 
-The film room also includes [my 2020 NEBL highlights](https://www.youtube.com/watch?v=jmASDMBrTlQ) from Belize. Playing and reviewing game film inspired this project. The evaluation below uses the pickup clip with the tracking overlay.
+## Explore the film library
 
-## Personal film library
+| Clip | What to look for |
+| --- | --- |
+| Half-court set | Players moving through a crowded half court |
+| End-to-end transition | How the tracker handles a moving camera |
+| Fast break | Players entering and leaving the frame |
+| Highlight reel possession | Tracking in a wide game-film shot |
+| Baseline camera | Players overlapping near the basket |
+| Outdoor pickup benchmark | The clip used for the hand-labeled detection check |
 
-The film picker includes five short excerpts from my supplied videos. Each plays alongside its own YOLOX overlay and has downloadable frame-level track data. I trimmed the longer reels to individual plays and removed audio. I cropped decorative padding from three vertical exports so the court fills more of the model input. The Drive copy shows the same half-court play as one of the attachments.
+Choose a clip in the **Film library**, then use **Replay both** or **Toggle half speed**. Each selection has its own annotated MP4 and frame-level tracking CSV. The local Streamlit app also lets you inspect one frame at a time and plot the path of a track ID.
 
-The personal clips are qualitative examples. Track IDs may change during contact, occlusion, or camera movement. The hand-labeled results below apply to the outdoor pickup benchmark.
+The five excerpts come from my own game-film collection. I trimmed them to short plays, removed audio, and cropped padding from three vertical exports so the court fills more of the model input. The film room also links to [my 2020 NEBL highlights](https://www.youtube.com/watch?v=jmASDMBrTlQ) and [my Senior Mixtape](https://www.youtube.com/watch?v=GedXUBbXi3s).
 
 ## What the model does
 
-OpenCV runs a pretrained YOLOX detector on each frame and keeps boxes classified as people. An overlap tracker matches those boxes across frames and assigns temporary IDs. This can help a coach find the moment two players cross or an athlete disappears behind a defender. The IDs are temporary labels and the positions are measured in pixels. The project does not identify players by name or measure possession, team, speed, or court distance.
+OpenCV runs a pretrained YOLOX detector on each frame and keeps boxes classified as people. An overlap tracker matches those boxes across frames and assigns temporary IDs. This can help a coach find the moment two players cross or an athlete disappears behind a defender. The IDs are temporary labels and the positions are measured in pixels. Track IDs are clip-local. Identifying players or measuring court distance would require additional models and validation.
 
-## Results from the demo
+## Evaluation on the outdoor pickup clip
 
 The included pickup clip contains 28 frames at 15 fps. I labeled on-court player boxes on three frames and matched detections one to one at an intersection-over-union threshold of 0.50.
 
@@ -28,7 +35,7 @@ The included pickup clip contains 28 frames at 15 fps. I labeled on-court player
 | Precision against player labels | 46.9% |
 | Recall against player labels | 93.8% |
 
-This is a small diagnostic check on one shot. The general-purpose detector finds spectators and other people, and overlapping players can get new IDs. The 63 track IDs in this clip are track fragments, not a count of distinct people. Identity accuracy still needs labels that follow each player over time. The next evaluation I would run is a fixed-camera clip with labeled identities and a court boundary to check whether off-court detections and ID switches drop.
+These scores cover three frames from one outdoor shot. The five personal clips let you inspect the results under different camera angles and are unscored. The general-purpose detector finds spectators and other people, and overlapping players can get new IDs. The 63 track IDs in this clip are track fragments, not a count of distinct people. Identity accuracy still needs labels that follow each player over time. The next evaluation I would run is a fixed-camera clip with labeled identities and a court boundary to check whether off-court detections and ID switches drop.
 
 ## Run it
 
@@ -50,4 +57,4 @@ The model used here has SHA-256 `c5c2d13e59ae883e6af3b45daea64af4833a4951c92d116
 
 ## Footage credit
 
-The demo is a silent, resized excerpt beginning at 15.35 seconds in [U.S., Indian Army Soldiers build camaraderie through basketball during Yudh Abhyas 2026](https://www.dvidshub.net/video/1023660/us-indian-army-soldiers-build-camaraderie-through-basketball-during-yudh-abhyas-2026), filmed by Sgt. Grayson Cavaliere, U.S. Army National Guard. [Wikimedia Commons identifies it as public domain in the United States](https://commons.wikimedia.org/wiki/File:U_S_,_Indian_Army_Soldiers_build_camaraderie_through_basketball_during_Yudh_Abhyas_2026_(1023660).webm).
+The outdoor pickup benchmark is a silent, resized excerpt beginning at 15.35 seconds in [U.S., Indian Army Soldiers build camaraderie through basketball during Yudh Abhyas 2026](https://www.dvidshub.net/video/1023660/us-indian-army-soldiers-build-camaraderie-through-basketball-during-yudh-abhyas-2026), filmed by Sgt. Grayson Cavaliere, U.S. Army National Guard. [Wikimedia Commons identifies it as public domain in the United States](https://commons.wikimedia.org/wiki/File:U_S_,_Indian_Army_Soldiers_build_camaraderie_through_basketball_during_Yudh_Abhyas_2026_(1023660).webm).
