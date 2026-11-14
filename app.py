@@ -43,6 +43,11 @@ with film:
     st.download_button("Download annotated clip", (DEMO / "tracked.mp4").read_bytes(),
                        "gamelens-tracked.mp4", "video/mp4")
 
+    st.subheader("From my playing days")
+    st.write("Mykeil Tzul · 2020 NEBL highlights from Belize. Reviewing film as a player is what inspired GameLens.")
+    st.video("https://www.youtube.com/watch?v=jmASDMBrTlQ")
+    st.markdown("[Watch on YouTube](https://www.youtube.com/watch?v=jmASDMBrTlQ) · Personal highlights shown as published.")
+
 with timeline:
     frame = st.slider("Review frame", 0, run["frames"] - 1)
     selected = [row for row in tracks if row["frame"] == frame]

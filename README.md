@@ -4,6 +4,8 @@
 
 I built GameLens to help coaches and players review crowded basketball clips. The film room pairs original footage with a computer vision overlay. You can replay both videos, slow them down, and download the annotated clip and its track data. The local Streamlit app adds a frame inspector and a plot for each track.
 
+The film room also includes [my 2020 NEBL highlights](https://www.youtube.com/watch?v=jmASDMBrTlQ) from Belize. Playing and reviewing game film inspired this project. The evaluation below uses the pickup clip with the tracking overlay.
+
 ## What the model does
 
 OpenCV runs a pretrained YOLOX detector on each frame and keeps boxes classified as people. An overlap tracker matches those boxes across frames and assigns temporary IDs. This can help a coach find the moment two players cross or an athlete disappears behind a defender. The IDs are temporary labels and the positions are measured in pixels. The project does not identify players by name or measure possession, team, speed, or court distance.
