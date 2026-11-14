@@ -47,6 +47,7 @@ with film:
     st.write("Mykeil Tzul · 2020 NEBL highlights from Belize. Reviewing film as a player is what inspired GameLens.")
     st.video("https://www.youtube.com/watch?v=jmASDMBrTlQ")
     st.markdown("[Watch on YouTube](https://www.youtube.com/watch?v=jmASDMBrTlQ) · Personal highlights shown as published.")
+    st.markdown("[Watch my Senior Mixtape on YouTube](https://www.youtube.com/watch?v=GedXUBbXi3s)")
 
 with timeline:
     frame = st.slider("Review frame", 0, run["frames"] - 1)
