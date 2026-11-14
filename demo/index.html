@@ -20,15 +20,15 @@ section{border-bottom:1px solid #40364d;padding:1rem 0 1.5rem}
 <section>
 <h2>Choose a clip</h2>
 <label for="clip">Film library</label>
-<select id="clip"><option value="">Outdoor pickup benchmark</option></select>
-<p id="clip-info" aria-live="polite">Original evaluation clip</p>
+<select id="clip"><option value="highlight-reel" selected>Highlight reel possession</option><option value="">Outdoor pickup benchmark</option></select>
+<p id="clip-info" aria-live="polite">Mykeil Tzul game film · IG REAL Tape · 1.2–6.5 s · IDs are temporary and do not identify players by name.</p>
 <div class="films">
-<div><h2>Original film</h2><video id="raw" controls playsinline preload="metadata" src="original.mp4"></video></div>
-<div><h2>YOLOX tracking overlay</h2><video id="overlay" controls playsinline preload="metadata" src="tracked.mp4"></video></div>
+<div><h2>Original film</h2><video id="raw" controls playsinline preload="metadata" src="film/highlight-reel/original.mp4"></video></div>
+<div><h2>YOLOX tracking overlay</h2><video id="overlay" poster="film/highlight-reel/poster.jpg" controls playsinline preload="metadata" src="film/highlight-reel/tracked.mp4"></video></div>
 </div>
 <button id="replay">Replay both</button><button id="slow">Toggle half speed</button>
 <p>Review a congested drive frame by frame using the timestamp controls. Track IDs follow overlapping person detections and can split or switch during contact.</p>
-<a id="video-export" href="tracked.mp4" download>Download the overlay</a> · <a id="track-export" href="tracks.csv" download>Download detections and tracks</a>
+<a id="video-export" href="film/highlight-reel/tracked.mp4" download>Download the overlay</a> · <a id="track-export" href="film/highlight-reel/tracks.csv" download>Download detections and tracks</a>
 </section>
 <section>
 <h2>From my playing days</h2>
@@ -52,12 +52,15 @@ async function loadCatalog() {
   if (!response.ok) throw new Error('Could not load film catalog');
   for (const clip of await response.json()) {
     catalog.set(clip.id, clip);
-    picker.add(new Option(clip.title, clip.id));
+    if (!Array.from(picker.options).some(option => option.value === clip.id)) {
+      picker.add(new Option(clip.title, clip.id), picker.options[picker.options.length - 1]);
+    }
   }
 }
-loadCatalog().catch(() => { info.textContent = 'Personal clips could not load. The benchmark is available.'; });
+loadCatalog().catch(() => { info.textContent = 'The full film library could not load. The featured clip and benchmark are available.'; });
 picker.onchange = () => {
-  const clip = catalog.get(picker.value);
+  const clip = catalog.get(picker.value) ?? (picker.value === 'highlight-reel'
+    ? {id: 'highlight-reel', source: 'IG REAL Tape · 1.2–6.5 s'} : null);
   const base = clip ? `film/${clip.id}/` : '';
   info.textContent = clip
     ? `Mykeil Tzul game film · ${clip.source} · IDs are temporary and do not identify players by name.`

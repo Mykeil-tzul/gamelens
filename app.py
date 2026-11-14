@@ -20,7 +20,7 @@ border:1px solid #67415d;border-radius:18px;padding:1.5rem 2rem;margin-bottom:1r
 """)
 catalog = json.loads((DEMO / "film" / "catalog.json").read_text())
 options = {clip["title"]: clip for clip in catalog}
-choice = st.selectbox("Film library", ["Outdoor pickup benchmark", *options])
+choice = st.selectbox("Film library", [*options, "Outdoor pickup benchmark"])
 clip = options.get(choice)
 folder = DEMO / "film" / clip["id"] if clip else DEMO
 run = json.loads((folder / "run.json").read_text())

@@ -15,7 +15,7 @@ I built GameLens because reviewing game film as a player taught me how much you 
 | Baseline camera | Players overlapping near the basket |
 | Outdoor pickup benchmark | The clip used for the hand-labeled detection check |
 
-Choose a clip in the **Film library**, then use **Replay both** or **Toggle half speed**. Each selection has its own annotated MP4 and frame-level tracking CSV. The local Streamlit app also lets you inspect one frame at a time and plot the path of a track ID.
+The film room opens on **Highlight reel possession** from my own game film. Choose another clip in the **Film library**, then use **Replay both** or **Toggle half speed**. Each selection has its own annotated MP4 and frame-level tracking CSV. The local Streamlit app also lets you inspect one frame at a time and plot the path of a track ID.
 
 The five excerpts come from my own game-film collection. I trimmed them to short plays, removed audio, and cropped padding from three vertical exports so the court fills more of the model input. The film room also links to [my 2020 NEBL highlights](https://www.youtube.com/watch?v=jmASDMBrTlQ) and [my Senior Mixtape](https://www.youtube.com/watch?v=GedXUBbXi3s).
 
