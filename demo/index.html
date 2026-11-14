@@ -12,18 +12,23 @@ h2{margin-bottom:.55rem} p{line-height:1.55} a{color:#ffae82}
 .films{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:1rem}
 video{width:100%;display:block;border-radius:14px;background:#0b0b14}
 .feature{width:min(100%,760px);aspect-ratio:16/9;border:0;border-radius:14px;background:#0b0b14}
+select{font:inherit;margin-left:.5rem;padding:.5rem;max-width:100%;border-radius:8px}
 button{font:inherit;padding:.65rem 1rem;margin:.9rem .45rem 0 0;border:0;border-radius:8px;background:#ffae82;color:#241527;cursor:pointer}
 section{border-bottom:1px solid #40364d;padding:1rem 0 1.5rem}
 </style>
 <header><h1>GameLens</h1><p>Basketball film review with computer vision</p></header>
 <section>
+<h2>Choose a clip</h2>
+<label for="clip">Film library</label>
+<select id="clip"><option value="">Outdoor pickup benchmark</option></select>
+<p id="clip-info" aria-live="polite">Original evaluation clip</p>
 <div class="films">
 <div><h2>Original film</h2><video id="raw" controls playsinline preload="metadata" src="original.mp4"></video></div>
 <div><h2>YOLOX tracking overlay</h2><video id="overlay" controls playsinline preload="metadata" src="tracked.mp4"></video></div>
 </div>
 <button id="replay">Replay both</button><button id="slow">Toggle half speed</button>
 <p>Review a congested drive frame by frame using the timestamp controls. Track IDs follow overlapping person detections and can split or switch during contact.</p>
-<a href="tracked.mp4" download>Download the overlay</a> · <a href="tracks.csv" download>Download detections and tracks</a>
+<a id="video-export" href="tracked.mp4" download>Download the overlay</a> · <a id="track-export" href="tracks.csv" download>Download detections and tracks</a>
 </section>
 <section>
 <h2>From my playing days</h2>
@@ -33,12 +38,40 @@ section{border-bottom:1px solid #40364d;padding:1rem 0 1.5rem}
 <p><a href="https://www.youtube.com/watch?v=GedXUBbXi3s">Watch my Senior Mixtape on YouTube</a></p>
 </section>
 <section><h2>What worked, what missed</h2>
-<p>On three manually labeled frames, GameLens matched 15 of 16 on-court player boxes at 50% overlap. There were 17 extra detections. Precision was 47% and recall was 94% on this small sample. Spectators and other people can be picked up by the detector. Identity accuracy was not measured.</p>
+<p>On three manually labeled frames from the outdoor pickup benchmark, GameLens matched 15 of 16 on-court player boxes at 50% overlap. There were 17 extra detections. Precision was 47% and recall was 94% on this small sample. Spectators and other people can be picked up by the detector. Identity accuracy was not measured.</p>
 <a href="labels.csv">Manual labels</a> · <a href="evaluation.json">Evaluation output</a> · <a href="https://github.com/Mykeil-tzul/gamelens">GitHub source</a>
 </section>
 <p>Pickup footage by Sgt. Grayson Cavaliere, U.S. Army National Guard. <a href="https://www.dvidshub.net/video/1023660/us-indian-army-soldiers-build-camaraderie-through-basketball-during-yudh-abhyas-2026">Original footage</a></p>
 <script>
 const videos = [...document.querySelectorAll('video')];
+const picker = document.querySelector('#clip');
+const info = document.querySelector('#clip-info');
+const catalog = new Map();
+async function loadCatalog() {
+  const response = await fetch('film/catalog.json');
+  if (!response.ok) throw new Error('Could not load film catalog');
+  for (const clip of await response.json()) {
+    catalog.set(clip.id, clip);
+    picker.add(new Option(clip.title, clip.id));
+  }
+}
+loadCatalog().catch(() => { info.textContent = 'Personal clips could not load. The benchmark is available.'; });
+picker.onchange = () => {
+  const clip = catalog.get(picker.value);
+  const base = clip ? `film/${clip.id}/` : '';
+  info.textContent = clip
+    ? `Mykeil Tzul game film · ${clip.source} · IDs are temporary and do not identify players by name.`
+    : 'Original evaluation clip';
+  videos.forEach((video, i) => {
+    video.pause();
+    video.src = base + (i === 0 ? 'original.mp4' : 'tracked.mp4');
+    if (i === 1 && clip) video.poster = base + 'poster.jpg';
+    else video.removeAttribute('poster');
+    video.load();
+  });
+  document.querySelector('#video-export').href = base + 'tracked.mp4';
+  document.querySelector('#track-export').href = base + 'tracks.csv';
+};
 document.querySelector('#replay').onclick = () => videos.forEach(video => {
   video.currentTime = 0;
   video.play().catch(() => {});

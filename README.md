@@ -6,6 +6,12 @@ I built GameLens to help coaches and players review crowded basketball clips. Th
 
 The film room also includes [my 2020 NEBL highlights](https://www.youtube.com/watch?v=jmASDMBrTlQ) from Belize. Playing and reviewing game film inspired this project. The evaluation below uses the pickup clip with the tracking overlay.
 
+## Personal film library
+
+The film picker includes five short excerpts from my supplied videos. Each plays alongside its own YOLOX overlay and has downloadable frame-level track data. I trimmed the longer reels to individual plays and removed audio. I cropped decorative padding from three vertical exports so the court fills more of the model input. The Drive copy shows the same half-court play as one of the attachments.
+
+The personal clips are qualitative examples. Track IDs may change during contact, occlusion, or camera movement. The hand-labeled results below apply to the outdoor pickup benchmark.
+
 ## What the model does
 
 OpenCV runs a pretrained YOLOX detector on each frame and keeps boxes classified as people. An overlap tracker matches those boxes across frames and assigns temporary IDs. This can help a coach find the moment two players cross or an athlete disappears behind a defender. The IDs are temporary labels and the positions are measured in pixels. The project does not identify players by name or measure possession, team, speed, or court distance.

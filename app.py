@@ -18,14 +18,19 @@ border:1px solid #67415d;border-radius:18px;padding:1.5rem 2rem;margin-bottom:1r
 </style>
 <header class="film-header"><h1>🏀 GameLens</h1><p>Basketball film review with computer vision</p></header>
 """)
-run = json.loads((DEMO / "run.json").read_text())
-with (DEMO / "tracks.csv").open() as file:
+catalog = json.loads((DEMO / "film" / "catalog.json").read_text())
+options = {clip["title"]: clip for clip in catalog}
+choice = st.selectbox("Film library", ["Outdoor pickup benchmark", *options])
+clip = options.get(choice)
+folder = DEMO / "film" / clip["id"] if clip else DEMO
+run = json.loads((folder / "run.json").read_text())
+with (folder / "tracks.csv").open() as file:
     tracks = [
         {key: float(value) if key in ("seconds", "confidence") else int(value)
          for key, value in row.items()}
         for row in csv.DictReader(file)
     ]
-st.caption("Outdoor pickup · U.S. and Indian Army players · Single camera shot")
+st.caption(clip["source"] if clip else "Outdoor pickup · U.S. and Indian Army players · Single camera shot")
 for col, label, value in zip(
     st.columns(4), ("Clip duration", "Frames analyzed", "Person detections", "Track IDs"),
     (f"{run['frames'] / run['fps']:.1f} s", run["frames"], run["detections"], run["tracks"]),
@@ -38,9 +43,9 @@ with film:
     for column, label, filename in [(a, "Original film", "original.mp4"), (b, "Computer vision overlay", "tracked.mp4")]:
         with column:
             st.subheader(label)
-            st.video(str(DEMO / filename))
+            st.video(str(folder / filename))
     st.caption("Boxes show person detections. IDs link overlapping boxes across frames and can change when people cross or disappear.")
-    st.download_button("Download annotated clip", (DEMO / "tracked.mp4").read_bytes(),
+    st.download_button("Download annotated clip", (folder / "tracked.mp4").read_bytes(),
                        "gamelens-tracked.mp4", "video/mp4")
 
     st.subheader("From my playing days")
@@ -68,7 +73,7 @@ with timeline:
             "Height above image bottom": [run["height"] - row["y2"] for row in trajectory],
         }, x="Horizontal position", y="Height above image bottom")
         st.caption("Positions are in video pixels. Camera movement affects the plot.")
-    st.download_button("Download detection and track data", (DEMO / "tracks.csv").read_bytes(),
+    st.download_button("Download detection and track data", (folder / "tracks.csv").read_bytes(),
                        "gamelens-tracks.csv", "text/csv")
 
 with methods:
@@ -79,7 +84,7 @@ with methods:
              "for manual film review. The detector can also box spectators or officials.")
     st.write("Counts describe this run. A person may get multiple IDs, and the same ID may switch "
              "between people. Positions are in pixels. Team identity, possession, and court distance require separate validation.")
-    evaluation = DEMO / "evaluation.json"
+    evaluation = folder / "evaluation.json"
     if evaluation.exists():
         scores = json.loads(evaluation.read_text())
         st.subheader("Hand-labeled frame check")
@@ -87,5 +92,7 @@ with methods:
                  f"{scores['matched']} matches, {scores['missed']} misses, {scores['extra']} extra detections.")
         st.write(f"Precision {scores['precision']:.0%} · Recall {scores['recall']:.0%}")
         st.caption("One short shot. Detection check only; track identity accuracy is unmeasured.")
-    st.markdown("[Footage credit · Sgt. Grayson Cavaliere, U.S. Army National Guard]"
+    if clip:
+        st.caption("This personal clip has no hand-labeled accuracy score.")
+    st.markdown("[Pickup benchmark footage credit · Sgt. Grayson Cavaliere, U.S. Army National Guard]"
                 "(https://www.dvidshub.net/video/1023660/us-indian-army-soldiers-build-camaraderie-through-basketball-during-yudh-abhyas-2026)")
