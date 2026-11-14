@@ -1,0 +1,9 @@
+{
+  "frames": 28,
+  "fps": 15.0,
+  "width": 960,
+  "height": 540,
+  "detections": 292,
+  "tracks": 63,
+  "threshold": 0.35
+}

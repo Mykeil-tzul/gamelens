@@ -1,8 +1,5 @@
-venv/
+.venv/
 __pycache__/
-.DS_Store
-.ipynb_checkpoints/
-*.log
-.env
-*.csv
-airflow/logs/
+*.onnx
+runs/
+.streamlit/secrets.toml
