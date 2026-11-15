@@ -12,24 +12,73 @@ h2{margin-bottom:.55rem} p{line-height:1.55} a{color:#ffae82}
 .films{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:1rem}
 video{width:100%;display:block;border-radius:14px;background:#0b0b14}
 .feature{width:min(100%,760px);aspect-ratio:16/9;border:0;border-radius:14px;background:#0b0b14}
-select{font:inherit;margin-left:.5rem;padding:.5rem;max-width:100%;border-radius:8px}
+.clip{scroll-margin-top:1rem}.clip h3{font-size:1rem;margin:.3rem 0 .6rem}.clip-links{margin-bottom:0}
 button{font:inherit;padding:.65rem 1rem;margin:.9rem .45rem 0 0;border:0;border-radius:8px;background:#ffae82;color:#241527;cursor:pointer}
 .audit-wrap{overflow:auto} table{border-collapse:collapse;width:100%} th,td{text-align:left;padding:.65rem;border-bottom:1px solid #40364d} section{border-bottom:1px solid #40364d;padding:1rem 0 1.5rem}
 </style>
 <header><h1>GameLens</h1><p>Basketball film review with computer vision</p></header>
-<section>
-<h2>Choose a clip</h2>
-<label for="clip">Film library</label>
-<select id="clip"><option value="highlight-reel" selected>Highlight reel possession</option><option value="">Outdoor pickup benchmark</option></select>
-<p id="clip-info" aria-live="polite">Mykeil Tzul game film · IG REAL Tape · 1.2–6.5 s · IDs are temporary and do not identify players by name.</p>
+<main>
+<section class="clip" id="highlight-reel" aria-label="Highlight reel possession">
+<h2>Highlight reel possession</h2>
+<p>Mykeil Tzul game film · IG REAL Tape · 1.2–6.5 s</p>
 <div class="films">
-<div><h2>Original film</h2><video id="raw" controls playsinline preload="metadata" src="film/highlight-reel/original.mp4"></video></div>
-<div><h2>YOLOX tracking overlay</h2><video id="overlay" poster="film/highlight-reel/poster.jpg" controls playsinline preload="metadata" src="film/highlight-reel/tracked.mp4"></video></div>
+<div><h3>Original film</h3><video aria-label="Highlight reel possession original film" controls playsinline preload="metadata" src="film/highlight-reel/original.mp4"></video></div>
+<div><h3>YOLOX tracking overlay</h3><video aria-label="Highlight reel possession tracking overlay" poster="film/highlight-reel/poster.jpg" controls playsinline preload="metadata" src="film/highlight-reel/tracked.mp4"></video></div>
 </div>
-<button id="replay">Replay both</button><button id="slow">Toggle half speed</button>
-<p>Review a congested drive frame by frame using the timestamp controls. Track IDs follow overlapping person detections and can split or switch during contact.</p>
-<a id="video-export" href="film/highlight-reel/tracked.mp4" download>Download the overlay</a> · <a id="track-export" href="film/highlight-reel/tracks.csv" download>Download detections and tracks</a>
+<button type="button" data-replay>Replay both</button><button type="button" data-slow aria-pressed="false">Toggle half speed</button>
+<p class="clip-links"><a href="film/highlight-reel/tracked.mp4" download>Download the overlay</a> · <a href="film/highlight-reel/tracks.csv" download>Download detections and tracks</a></p>
 </section>
+<section class="clip" id="broadcast-transition" aria-label="End-to-end transition">
+<h2>End-to-end transition</h2>
+<p>Mykeil Tzul game film · Broadcast excerpt · 3–9 s</p>
+<div class="films">
+<div><h3>Original film</h3><video aria-label="End-to-end transition original film" controls playsinline preload="none" src="film/broadcast-transition/original.mp4"></video></div>
+<div><h3>YOLOX tracking overlay</h3><video aria-label="End-to-end transition tracking overlay" poster="film/broadcast-transition/poster.jpg" controls playsinline preload="none" src="film/broadcast-transition/tracked.mp4"></video></div>
+</div>
+<button type="button" data-replay>Replay both</button><button type="button" data-slow aria-pressed="false">Toggle half speed</button>
+<p class="clip-links"><a href="film/broadcast-transition/tracked.mp4" download>Download the overlay</a> · <a href="film/broadcast-transition/tracks.csv" download>Download detections and tracks</a></p>
+</section>
+<section class="clip" id="broadcast-fast-break" aria-label="Fast break">
+<h2>Fast break</h2>
+<p>Mykeil Tzul game film · Broadcast excerpt · 4–10 s</p>
+<div class="films">
+<div><h3>Original film</h3><video aria-label="Fast break original film" controls playsinline preload="none" src="film/broadcast-fast-break/original.mp4"></video></div>
+<div><h3>YOLOX tracking overlay</h3><video aria-label="Fast break tracking overlay" poster="film/broadcast-fast-break/poster.jpg" controls playsinline preload="none" src="film/broadcast-fast-break/tracked.mp4"></video></div>
+</div>
+<button type="button" data-replay>Replay both</button><button type="button" data-slow aria-pressed="false">Toggle half speed</button>
+<p class="clip-links"><a href="film/broadcast-fast-break/tracked.mp4" download>Download the overlay</a> · <a href="film/broadcast-fast-break/tracks.csv" download>Download detections and tracks</a></p>
+</section>
+<section class="clip" id="broadcast-half-court" aria-label="Half-court set">
+<h2>Half-court set</h2>
+<p>Mykeil Tzul game film · Full broadcast clip · through the layup</p>
+<div class="films">
+<div><h3>Original film</h3><video aria-label="Half-court set original film" controls playsinline preload="none" src="film/broadcast-half-court/original.mp4?v=full-layup"></video></div>
+<div><h3>YOLOX tracking overlay</h3><video aria-label="Half-court set tracking overlay" poster="film/broadcast-half-court/poster.jpg?v=full-layup" controls playsinline preload="none" src="film/broadcast-half-court/tracked.mp4?v=full-layup"></video></div>
+</div>
+<button type="button" data-replay>Replay both</button><button type="button" data-slow aria-pressed="false">Toggle half speed</button>
+<p class="clip-links"><a href="film/broadcast-half-court/tracked.mp4?v=full-layup" download>Download the overlay</a> · <a href="film/broadcast-half-court/tracks.csv?v=full-layup" download>Download detections and tracks</a></p>
+</section>
+<section class="clip" id="baseline-camera" aria-label="Baseline camera">
+<h2>Baseline camera</h2>
+<p>Mykeil Tzul game film · Vertical highlight reel · 0.5–7 s</p>
+<div class="films">
+<div><h3>Original film</h3><video aria-label="Baseline camera original film" controls playsinline preload="none" src="film/baseline-camera/original.mp4"></video></div>
+<div><h3>YOLOX tracking overlay</h3><video aria-label="Baseline camera tracking overlay" poster="film/baseline-camera/poster.jpg" controls playsinline preload="none" src="film/baseline-camera/tracked.mp4"></video></div>
+</div>
+<button type="button" data-replay>Replay both</button><button type="button" data-slow aria-pressed="false">Toggle half speed</button>
+<p class="clip-links"><a href="film/baseline-camera/tracked.mp4" download>Download the overlay</a> · <a href="film/baseline-camera/tracks.csv" download>Download detections and tracks</a></p>
+</section>
+<section class="clip" id="outdoor-pickup" aria-label="Outdoor pickup benchmark">
+<h2>Outdoor pickup benchmark</h2>
+<p>Evaluation footage · U.S. Army National Guard</p>
+<div class="films">
+<div><h3>Original film</h3><video aria-label="Outdoor pickup benchmark original film" controls playsinline preload="none" src="original.mp4"></video></div>
+<div><h3>YOLOX tracking overlay</h3><video aria-label="Outdoor pickup benchmark tracking overlay" controls playsinline preload="none" src="tracked.mp4"></video></div>
+</div>
+<button type="button" data-replay>Replay both</button><button type="button" data-slow aria-pressed="false">Toggle half speed</button>
+<p class="clip-links"><a href="tracked.mp4" download>Download the overlay</a> · <a href="tracks.csv" download>Download detections and tracks</a></p>
+</section>
+<p>Track IDs are temporary labels for person detections. They can change when players overlap.</p>
 <section>
 <h2>From my playing days</h2>
 <p>Mykeil Tzul · 2020 NEBL highlights from Belize. Reviewing film as a player is what inspired GameLens.</p>
@@ -51,47 +100,22 @@ button{font:inherit;padding:.65rem 1rem;margin:.9rem .45rem 0 0;border:0;border-
 <p><a href="film/highlight-reel/identity-labels.csv">Download jersey labels</a> · <a href="film/highlight-reel/identity-audit.json">Open per-frame results</a></p>
 </section>
 <p>Pickup footage by Sgt. Grayson Cavaliere, U.S. Army National Guard. <a href="https://www.dvidshub.net/video/1023660/us-indian-army-soldiers-build-camaraderie-through-basketball-during-yudh-abhyas-2026">Original footage</a></p>
+</main>
 <script>
-const videos = [...document.querySelectorAll('video')];
-const picker = document.querySelector('#clip');
-const info = document.querySelector('#clip-info');
-const catalog = new Map();
-async function loadCatalog() {
-  const response = await fetch('film/catalog.json');
-  if (!response.ok) throw new Error('Could not load film catalog');
-  for (const clip of await response.json()) {
-    catalog.set(clip.id, clip);
-    if (!Array.from(picker.options).some(option => option.value === clip.id)) {
-      picker.add(new Option(clip.title, clip.id), picker.options[picker.options.length - 1]);
-    }
-  }
-}
-loadCatalog().catch(() => { info.textContent = 'The full film library could not load. The featured clip and benchmark are available.'; });
-picker.onchange = () => {
-  const clip = catalog.get(picker.value) ?? (picker.value === 'highlight-reel'
-    ? {id: 'highlight-reel', source: 'IG REAL Tape · 1.2–6.5 s'} : null);
-  const base = clip ? `film/${clip.id}/` : '';
-  info.textContent = clip
-    ? `Mykeil Tzul game film · ${clip.source} · IDs are temporary and do not identify players by name.`
-    : 'Original evaluation clip';
-  videos.forEach((video, i) => {
-    video.pause();
-    video.src = base + (i === 0 ? 'original.mp4' : 'tracked.mp4');
-    if (i === 1 && clip) video.poster = base + 'poster.jpg';
-    else video.removeAttribute('poster');
-    video.load();
+for (const clip of document.querySelectorAll('.clip')) {
+  const videos = [...clip.querySelectorAll('video')];
+  const replay = clip.querySelector('[data-replay]');
+  const slow = clip.querySelector('[data-slow]');
+  replay.onclick = () => videos.forEach(video => {
+    video.currentTime = 0;
+    video.play().catch(() => {});
   });
-  document.querySelector('#video-export').href = base + 'tracked.mp4';
-  document.querySelector('#track-export').href = base + 'tracks.csv';
-};
-document.querySelector('#replay').onclick = () => videos.forEach(video => {
-  video.currentTime = 0;
-  video.play().catch(() => {});
-});
-document.querySelector('#slow').onclick = () => {
-  const rate = videos[0].playbackRate === 1 ? 0.5 : 1;
-  videos.forEach(video => video.playbackRate = rate);
-};
+  slow.onclick = () => {
+    const halfSpeed = slow.getAttribute('aria-pressed') === 'false';
+    slow.setAttribute('aria-pressed', String(halfSpeed));
+    videos.forEach(video => video.playbackRate = halfSpeed ? 0.5 : 1);
+  };
+}
 
 const loadAudit = async () => {
   const response = await fetch('film/highlight-reel/identity-audit.json');
@@ -111,10 +135,7 @@ const loadAudit = async () => {
 loadAudit().catch(() => { document.querySelector('#audit-status').textContent = 'Audit table could not load. Open the per-frame results above.'; });
 for (const button of document.querySelectorAll('[data-audit-frame]')) {
   button.onclick = () => {
-    if (picker.value !== 'highlight-reel') {
-      picker.value = 'highlight-reel';
-      picker.onchange();
-    }
+    const videos = [...document.querySelectorAll('#highlight-reel video')];
     const target = Number(button.dataset.auditFrame) / 15;
     for (const video of videos) {
       video.pause();

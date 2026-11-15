@@ -1,7 +1,27 @@
 [
-  {"id":"highlight-reel","title":"Highlight reel possession","source":"IG REAL Tape · 1.2–6.5 s"},
-  {"id":"broadcast-half-court","title":"Half-court set","source":"Broadcast excerpt · 1–7 s"},
-  {"id":"broadcast-transition","title":"End-to-end transition","source":"Broadcast excerpt · 3–9 s"},
-  {"id":"broadcast-fast-break","title":"Fast break","source":"Broadcast excerpt · 4–10 s"},
-  {"id":"baseline-camera","title":"Baseline camera","source":"Vertical highlight reel · 0.5–7 s"}
+  {
+    "id": "highlight-reel",
+    "title": "Highlight reel possession",
+    "source": "IG REAL Tape · 1.2–6.5 s"
+  },
+  {
+    "id": "broadcast-transition",
+    "title": "End-to-end transition",
+    "source": "Broadcast excerpt · 3–9 s"
+  },
+  {
+    "id": "broadcast-fast-break",
+    "title": "Fast break",
+    "source": "Broadcast excerpt · 4–10 s"
+  },
+  {
+    "id": "broadcast-half-court",
+    "title": "Half-court set",
+    "source": "Full broadcast clip · through the layup"
+  },
+  {
+    "id": "baseline-camera",
+    "title": "Baseline camera",
+    "source": "Vertical highlight reel · 0.5–7 s"
+  }
 ]

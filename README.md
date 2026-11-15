@@ -8,14 +8,14 @@ I built GameLens because reviewing game film as a player taught me how much you 
 
 | Clip | What to look for |
 | --- | --- |
-| Half-court set | Players moving through a crowded half court |
+| Highlight reel possession | Tracking in a wide game-film shot |
 | End-to-end transition | How the tracker handles a moving camera |
 | Fast break | Players entering and leaving the frame |
-| Highlight reel possession | Tracking in a wide game-film shot |
+| Half-court set | Full play through Mykeil’s layup |
 | Baseline camera | Players overlapping near the basket |
 | Outdoor pickup benchmark | The clip used for the hand-labeled detection check |
 
-The film room opens on **Highlight reel possession** from my own game film. Choose another clip in the **Film library**, then use **Replay both** or **Toggle half speed**. Each selection has its own annotated MP4 and frame-level tracking CSV. The local Streamlit app also lets you inspect one frame at a time and plot the path of a track ID.
+The film room opens on **Highlight reel possession** from my own game film. Scroll down to watch the other clips in order. Each clip pairs the original with its annotated MP4 and has its own **Replay both**, **Toggle half speed**, and tracking CSV. The local Streamlit app also lets you inspect one frame at a time and plot the path of a track ID.
 
 The five excerpts come from my own game-film collection. I trimmed them to short plays, removed audio, and cropped padding from three vertical exports so the court fills more of the model input. The film room also links to [my 2020 NEBL highlights](https://www.youtube.com/watch?v=jmASDMBrTlQ) and [my Senior Mixtape](https://www.youtube.com/watch?v=GedXUBbXi3s).
 
