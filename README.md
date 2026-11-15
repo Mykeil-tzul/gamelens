@@ -35,7 +35,20 @@ The included pickup clip contains 28 frames at 15 fps. I labeled on-court player
 | Precision against player labels | 46.9% |
 | Recall against player labels | 93.8% |
 
-These scores cover three frames from one outdoor shot. The five personal clips let you inspect the results under different camera angles and are unscored. The general-purpose detector finds spectators and other people, and overlapping players can get new IDs. The 63 track IDs in this clip are track fragments, not a count of distinct people. Identity accuracy still needs labels that follow each player over time. The next evaluation I would run is a fixed-camera clip with labeled identities and a court boundary to check whether off-court detections and ID switches drop.
+These scores cover three frames from one outdoor shot. The five personal clips let you inspect the results under different camera angles. The featured clip has a separate identity audit below. The general-purpose detector finds spectators and other people, and overlapping players can get new IDs. The 63 track IDs in this clip are track fragments, not a count of distinct people. A broader identity benchmark would need multiple fully labeled clips.
+
+## Identity audit on my featured possession
+
+I marked the torso position of white jerseys 2 and 12 across the 80-frame highlight. Labels sample every six frames, the last frame, and extra frames around the screen. A detection matches when exactly one box covers the torso point. Multiple boxes count as ambiguous. Out-of-view and uncertain labels are excluded. An ID change across overlapping boxes is tracked separately from a clear switch. A gap begins when a visible label has zero covering boxes.
+
+| Jersey | Visible labels | Unique matches | Missed | Ambiguous | Clear switches | Changes across overlap |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| White 2 | 22 | 18 | 0 | 4 | 0 | 1 |
+| White 12 | 10 | 9 | 0 | 1 | 0 | 0 |
+
+White 2 was track ID 2 at frame 32. Frame 33 was ambiguous and frame 34 matched ID 12. The film room can jump straight to both sides of that change. This is a small, sample-based audit of two jerseys on one possession. Misses or switches between sampled frames can go undetected. The labels are jersey references for the audit, independent of the model’s temporary IDs.
+
+Reproduce it from the repository root with `python -m gamelens.identity_audit`. See the [manual labels](demo/film/highlight-reel/identity-labels.csv) and [scored output](demo/film/highlight-reel/identity-audit.json).
 
 ## Run it
 

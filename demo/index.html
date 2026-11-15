@@ -14,7 +14,7 @@ video{width:100%;display:block;border-radius:14px;background:#0b0b14}
 .feature{width:min(100%,760px);aspect-ratio:16/9;border:0;border-radius:14px;background:#0b0b14}
 select{font:inherit;margin-left:.5rem;padding:.5rem;max-width:100%;border-radius:8px}
 button{font:inherit;padding:.65rem 1rem;margin:.9rem .45rem 0 0;border:0;border-radius:8px;background:#ffae82;color:#241527;cursor:pointer}
-section{border-bottom:1px solid #40364d;padding:1rem 0 1.5rem}
+.audit-wrap{overflow:auto} table{border-collapse:collapse;width:100%} th,td{text-align:left;padding:.65rem;border-bottom:1px solid #40364d} section{border-bottom:1px solid #40364d;padding:1rem 0 1.5rem}
 </style>
 <header><h1>GameLens</h1><p>Basketball film review with computer vision</p></header>
 <section>
@@ -38,8 +38,17 @@ section{border-bottom:1px solid #40364d;padding:1rem 0 1.5rem}
 <p><a href="https://www.youtube.com/watch?v=GedXUBbXi3s">Watch my Senior Mixtape on YouTube</a></p>
 </section>
 <section><h2>What worked, what missed</h2>
-<p>On three manually labeled frames from the outdoor pickup benchmark, GameLens matched 15 of 16 on-court player boxes at 50% overlap. There were 17 extra detections. Precision was 47% and recall was 94% on this small sample. Spectators and other people can be picked up by the detector. Identity accuracy was not measured.</p>
+<p>On three manually labeled frames from the outdoor pickup benchmark, GameLens matched 15 of 16 on-court player boxes at 50% overlap. There were 17 extra detections. Precision was 47% and recall was 94% on this small sample. Spectators and other people can be picked up by the detector. That evaluation measured detection boxes.</p>
 <a href="labels.csv">Manual labels</a> · <a href="evaluation.json">Evaluation output</a> · <a href="https://github.com/Mykeil-tzul/gamelens">GitHub source</a>
+</section>
+<section id="identity-audit">
+<h2>Follow a jersey through the featured possession</h2>
+<p>I marked two jerseys from the opening to the end of the 5.3-second highlight. The audit samples every six frames, the final frame, and extra frames around the screen. It shows where overlapping boxes make identity hard to score.</p>
+<div class="audit-wrap"><table><thead><tr><th>Jersey</th><th>Visible labels</th><th>Unique matches</th><th>Missed</th><th>Ambiguous</th><th>Clear switches</th><th>Changes across overlap</th></tr></thead><tbody id="audit-results"></tbody></table></div>
+<p id="audit-status" role="status"></p>
+<button type="button" data-audit-frame="32">Inspect before the change · 2.13s</button>
+<button type="button" data-audit-frame="34">Inspect after the change · 2.27s</button>
+<p><a href="film/highlight-reel/identity-labels.csv">Download jersey labels</a> · <a href="film/highlight-reel/identity-audit.json">Open per-frame results</a></p>
 </section>
 <p>Pickup footage by Sgt. Grayson Cavaliere, U.S. Army National Guard. <a href="https://www.dvidshub.net/video/1023660/us-indian-army-soldiers-build-camaraderie-through-basketball-during-yudh-abhyas-2026">Original footage</a></p>
 <script>
@@ -83,5 +92,37 @@ document.querySelector('#slow').onclick = () => {
   const rate = videos[0].playbackRate === 1 ? 0.5 : 1;
   videos.forEach(video => video.playbackRate = rate);
 };
+
+const loadAudit = async () => {
+  const response = await fetch('film/highlight-reel/identity-audit.json');
+  if (!response.ok) throw new Error('Audit unavailable');
+  const {players} = await response.json();
+  for (const [player, row] of Object.entries(players)) {
+    const tr = document.querySelector('#audit-results').insertRow();
+    const header = document.createElement('th');
+    header.scope = 'row';
+    header.textContent = player;
+    tr.append(header);
+    for (const key of ['visible', 'matched', 'missed', 'ambiguous', 'switches', 'across_ambiguity']) {
+      tr.insertCell().textContent = row[key];
+    }
+  }
+};
+loadAudit().catch(() => { document.querySelector('#audit-status').textContent = 'Audit table could not load. Open the per-frame results above.'; });
+for (const button of document.querySelectorAll('[data-audit-frame]')) {
+  button.onclick = () => {
+    if (picker.value !== 'highlight-reel') {
+      picker.value = 'highlight-reel';
+      picker.onchange();
+    }
+    const target = Number(button.dataset.auditFrame) / 15;
+    for (const video of videos) {
+      video.pause();
+      if (video.readyState >= 1) video.currentTime = target;
+      else video.addEventListener('loadedmetadata', () => { video.currentTime = target; }, {once: true});
+    }
+    videos[0].scrollIntoView({block:'center'});
+  };
+}
 </script>
 </html>

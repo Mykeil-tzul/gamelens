@@ -1,0 +1,265 @@
+{
+  "players": {
+    "White 12": {
+      "visible": 10,
+      "matched": 9,
+      "missed": 0,
+      "ambiguous": 1,
+      "switches": 0,
+      "across_ambiguity": 0,
+      "gaps": 0
+    },
+    "White 2": {
+      "visible": 22,
+      "matched": 18,
+      "missed": 0,
+      "ambiguous": 4,
+      "switches": 0,
+      "across_ambiguity": 1,
+      "gaps": 0
+    }
+  },
+  "observations": [
+    {
+      "frame": 0,
+      "player": "White 12",
+      "status": "out",
+      "track_id": null
+    },
+    {
+      "frame": 0,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 6,
+      "player": "White 12",
+      "status": "out",
+      "track_id": null
+    },
+    {
+      "frame": 6,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 12,
+      "player": "White 12",
+      "status": "out",
+      "track_id": null
+    },
+    {
+      "frame": 12,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 18,
+      "player": "White 12",
+      "status": "out",
+      "track_id": null
+    },
+    {
+      "frame": 18,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 24,
+      "player": "White 12",
+      "status": "uncertain",
+      "track_id": null
+    },
+    {
+      "frame": 24,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 25,
+      "player": "White 2",
+      "status": "ambiguous",
+      "track_id": null
+    },
+    {
+      "frame": 26,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 27,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 28,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 29,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 30,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 30,
+      "player": "White 2",
+      "status": "ambiguous",
+      "track_id": null
+    },
+    {
+      "frame": 31,
+      "player": "White 2",
+      "status": "ambiguous",
+      "track_id": null
+    },
+    {
+      "frame": 32,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 2
+    },
+    {
+      "frame": 33,
+      "player": "White 2",
+      "status": "ambiguous",
+      "track_id": null
+    },
+    {
+      "frame": 34,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12,
+      "id_changed": true
+    },
+    {
+      "frame": 35,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12
+    },
+    {
+      "frame": 36,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 36,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12
+    },
+    {
+      "frame": 42,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 42,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12
+    },
+    {
+      "frame": 48,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 48,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12
+    },
+    {
+      "frame": 54,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 54,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12
+    },
+    {
+      "frame": 60,
+      "player": "White 12",
+      "status": "ambiguous",
+      "track_id": null
+    },
+    {
+      "frame": 60,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12
+    },
+    {
+      "frame": 66,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 66,
+      "player": "White 2",
+      "status": "matched",
+      "track_id": 12
+    },
+    {
+      "frame": 72,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 72,
+      "player": "White 2",
+      "status": "out",
+      "track_id": null
+    },
+    {
+      "frame": 78,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 78,
+      "player": "White 2",
+      "status": "out",
+      "track_id": null
+    },
+    {
+      "frame": 79,
+      "player": "White 12",
+      "status": "matched",
+      "track_id": 38
+    },
+    {
+      "frame": 79,
+      "player": "White 2",
+      "status": "out",
+      "track_id": null
+    }
+  ]
+}
