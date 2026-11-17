@@ -1,0 +1,174 @@
+{
+  "method": "Fixed diagnostic queries written alongside the seven-annotation index. Development check, not an independent or held-out benchmark.",
+  "indexedMoments": 7,
+  "queryCount": 18,
+  "hitAt3": {
+    "correct": 12,
+    "total": 12
+  },
+  "noMatch": {
+    "correct": 6,
+    "total": 6
+  },
+  "results": [
+    {
+      "query": "show me a layup",
+      "relevant": [
+        "layup"
+      ],
+      "returned": [
+        "layup"
+      ],
+      "pass": true
+    },
+    {
+      "query": "half court drive",
+      "relevant": [
+        "layup"
+      ],
+      "returned": [
+        "layup",
+        "shot-gather"
+      ],
+      "pass": true
+    },
+    {
+      "query": "shots with a defender",
+      "relevant": [
+        "shot-gather"
+      ],
+      "returned": [
+        "shot-gather"
+      ],
+      "pass": true
+    },
+    {
+      "query": "shooting gather",
+      "relevant": [
+        "shot-gather"
+      ],
+      "returned": [
+        "shot-gather"
+      ],
+      "pass": true
+    },
+    {
+      "query": "tracking identity overlap",
+      "relevant": [
+        "identity-overlap"
+      ],
+      "returned": [
+        "identity-overlap"
+      ],
+      "pass": true
+    },
+    {
+      "query": "screen and tracker",
+      "relevant": [
+        "identity-overlap"
+      ],
+      "returned": [
+        "identity-overlap"
+      ],
+      "pass": true
+    },
+    {
+      "query": "running in transition",
+      "relevant": [
+        "transition-run",
+        "fast-break"
+      ],
+      "returned": [
+        "fast-break",
+        "transition-run"
+      ],
+      "pass": true
+    },
+    {
+      "query": "fast break",
+      "relevant": [
+        "fast-break"
+      ],
+      "returned": [
+        "fast-break"
+      ],
+      "pass": true
+    },
+    {
+      "query": "moving camera",
+      "relevant": [
+        "transition-run"
+      ],
+      "returned": [
+        "transition-run"
+      ],
+      "pass": true
+    },
+    {
+      "query": "baseline finishing",
+      "relevant": [
+        "paint-contact"
+      ],
+      "returned": [
+        "paint-contact"
+      ],
+      "pass": true
+    },
+    {
+      "query": "outdoor pickup",
+      "relevant": [
+        "pickup"
+      ],
+      "returned": [
+        "pickup"
+      ],
+      "pass": true
+    },
+    {
+      "query": "spectators detection benchmark",
+      "relevant": [
+        "pickup"
+      ],
+      "returned": [
+        "pickup"
+      ],
+      "pass": true
+    },
+    {
+      "query": "No. 3 drives left",
+      "relevant": [],
+      "returned": [],
+      "pass": true
+    },
+    {
+      "query": "failed defensive rotations",
+      "relevant": [],
+      "returned": [],
+      "pass": true
+    },
+    {
+      "query": "buzzer beater three pointer",
+      "relevant": [],
+      "returned": [],
+      "pass": true
+    },
+    {
+      "query": "post up fadeaway",
+      "relevant": [],
+      "returned": [],
+      "pass": true
+    },
+    {
+      "query": "without a defender",
+      "relevant": [],
+      "returned": [],
+      "pass": true
+    },
+    {
+      "query": "Show every dunk by Michael Jordan",
+      "relevant": [],
+      "returned": [],
+      "pass": true
+    }
+  ]
+}

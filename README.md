@@ -4,6 +4,22 @@
 
 I built GameLens because reviewing game film as a player taught me how much you can miss at full speed. It puts the original play beside a computer vision overlay so a player or coach can replay the action, slow it down, and see where the tracker follows someone or loses them in traffic.
 
+## ReplayGPT film search
+
+[Open ReplayGPT](https://mykeil-tzul.github.io/gamelens/#replay) and describe a play, such as “half court layup,” “shooting gather,” or “tracking identity overlap.” Each result names the clip, shows the source note and matched words, and opens the original and overlay at the matching timestamp.
+
+The first index has seven timestamped notes across the six published clips. I used the existing jersey audit, the clip descriptions, and a visual review of the film excerpts to write those notes. The search normalizes common basketball words and ranks notes using matching-word coverage and weighted titles and tags. It returns up to three matches. Queries about an unlabeled jersey or unsupported tactical claim can return no match. Optional **Meaning search with AI** runs `Xenova/all-MiniLM-L6-v2` through Transformers.js 3.8.1 in the browser. It embeds the query and the notes, combines cosine similarity with a keyword boost, and returns notes with cosine similarity at least 0.42. This is a development threshold, not calibrated confidence. Jersey and negated queries retain the explicit-label gate. The first use downloads quantized model weights from Hugging Face and a runtime from jsDelivr. Queries and notes are embedded locally. Model loading can fail, and instant keyword search remains available. In the delivery environment, the Hugging Face connection was reset, so successful meaning-model inference and semantic retrieval accuracy could not be verified. The browser error path was checked separately.
+
+ReplayGPT currently implements annotation retrieval. It has no generative LLM backend or automatic video-event recognition.
+
+You can add a notebook entry with a time range, description, search tags, and an optional confirmed jersey. Times are checked against the video duration. These notes stay in the current browser, can be deleted, and can be downloaded as JSON. Broad retrieval can still produce irrelevant matches, so the original footage remains the evidence.
+
+### Search checks
+
+The keyword-search development diagnostic set has 12 supported queries and six unsupported ones. On that set, a relevant moment appeared in the first three results for 12/12 supported queries, and all six unsupported queries returned no match. The queries were written alongside this tiny index. They are development checks and provide no held-out search accuracy estimate.
+
+Run `node --test tests/*.test.mjs` and `node scripts/evaluate-replay.mjs`. Inspect the [queries](demo/replay-queries.json) and [scored results](demo/replay-evaluation.json). To evaluate broader retrieval, expand the annotated film corpus and have a coach supply new questions before evaluating a frozen version.
+
 ## Explore the film library
 
 | Clip | What to look for |

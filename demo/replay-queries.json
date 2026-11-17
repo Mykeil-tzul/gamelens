@@ -1,0 +1,20 @@
+[
+  {"query":"show me a layup","relevant":["layup"]},
+  {"query":"half court drive","relevant":["layup"]},
+  {"query":"shots with a defender","relevant":["shot-gather"]},
+  {"query":"shooting gather","relevant":["shot-gather"]},
+  {"query":"tracking identity overlap","relevant":["identity-overlap"]},
+  {"query":"screen and tracker","relevant":["identity-overlap"]},
+  {"query":"running in transition","relevant":["transition-run","fast-break"]},
+  {"query":"fast break","relevant":["fast-break"]},
+  {"query":"moving camera","relevant":["transition-run"]},
+  {"query":"baseline finishing","relevant":["paint-contact"]},
+  {"query":"outdoor pickup","relevant":["pickup"]},
+  {"query":"spectators detection benchmark","relevant":["pickup"]},
+  {"query":"No. 3 drives left","relevant":[]},
+  {"query":"failed defensive rotations","relevant":[]},
+  {"query":"buzzer beater three pointer","relevant":[]},
+  {"query":"post up fadeaway","relevant":[]},
+  {"query":"without a defender","relevant":[]},
+  {"query":"Show every dunk by Michael Jordan","relevant":[]}
+]
