@@ -19,32 +19,7 @@ button{font:inherit;padding:.65rem 1rem;margin:.9rem .45rem 0 0;border:0;border-
 </style>
 <header><h1>GameLens</h1><p>Basketball film review with computer vision</p></header>
 <main>
-<section id="replay" aria-labelledby="replay-title">
-<p class="replay-eyebrow">REPLAYGPT · SEARCH THE FILM ROOM</p>
-<h2 id="replay-title">Describe a play. Find the moment.</h2>
-<p>Search seven timestamped moments across six clips, or add your own notes. Every result links to the original film and tracking overlay.</p>
-<form id="replay-search">
-<label>What do you want to watch?<input name="query" type="search" maxlength="200" required placeholder="Show me the half-court layup"></label>
-<label>Film<select name="clip" data-clip-options><option value="">All clips</option></select></label>
-<button>Find moments</button>
-</form>
-<label class="meaning-toggle"><input id="meaning-search" type="checkbox"> Meaning search with AI · downloads a model on first use</label>
-<div aria-label="Example searches"><button type="button" data-replay-query="half court layup">A layup</button><button type="button" data-replay-query="fast break">A fast break</button><button type="button" data-replay-query="tracking identity overlap">A tracking ID change</button><button type="button" data-replay-query="shooting gather">Shot preparation</button></div>
-<p id="replay-status" role="status">Search uses written film annotations. Tactical interpretations and jersey identities need explicit labels.</p>
-<div class="replay-grid" id="replay-results"></div>
-<details><summary>Add a moment to your film notebook</summary>
-<p>Pause a clip below, confirm what you see, then record the start and end in seconds relative to that excerpt.</p>
-<form id="moment-form">
-<div class="replay-grid"><label>Clip<select name="clip" data-clip-options></select></label><label>Moment title<input name="title" maxlength="100" required></label></div>
-<div class="replay-grid"><label>Start (seconds)<input name="start" type="number" min="0" step=".01" required></label><label>End (seconds)<input name="end" type="number" min=".01" step=".01" required></label><label>Confirmed jersey number (optional)<input name="jersey" inputmode="numeric" pattern="[0-9]{1,3}" maxlength="3"></label></div>
-<label>What is visible?<textarea name="note" minlength="8" maxlength="500" required rows="3"></textarea></label>
-<label>Search tags, separated by commas<input name="tags" maxlength="400" placeholder="layup, left hand, transition"></label>
-<button>Save moment</button><p id="moment-status" role="status"></p>
-</form>
-<ul id="saved-moments"></ul><button type="button" id="download-moments">Download notes</button>
-</details>
-<details><summary>How the search is evaluated</summary><p>ReplayGPT retrieves text annotations using basketball synonyms, matching-word coverage, and weighted tags. Optional meaning search uses MiniLM embeddings in your browser to find related wording. Similarity is a ranking signal and does not establish that a play happened. It shows up to three supported matches and reports no match when evidence is missing. The diagnostic query set checks clip retrieval and unsupported questions. It measures this small index, with no claim of general video understanding.</p><p><a href="replay-evaluation.json">Search evaluation</a> · <a href="replay-queries.json">Diagnostic queries</a></p></details>
-</section>
+
 <section class="clip" id="highlight-reel" aria-label="Highlight reel possession">
 <h2>Highlight reel possession</h2>
 <p>Mykeil Tzul game film · IG REAL Tape · 1.2–6.5 s</p>
@@ -112,6 +87,32 @@ button{font:inherit;padding:.65rem 1rem;margin:.9rem .45rem 0 0;border:0;border-
 <iframe class="feature" src="https://www.youtube-nocookie.com/embed/jmASDMBrTlQ" title="Mykeil Tzul 2020 NEBL Highlights" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 <p><a href="https://www.youtube.com/watch?v=jmASDMBrTlQ">Watch on YouTube</a> · Personal highlights shown as published.</p>
 <p><a href="https://www.youtube.com/watch?v=GedXUBbXi3s">Watch my Senior Mixtape on YouTube</a></p>
+</section>
+<section id="replay" aria-labelledby="replay-title">
+<p class="replay-eyebrow">REPLAYGPT · SEARCH THE FILM ROOM</p>
+<h2 id="replay-title">Describe a play. Find the moment.</h2>
+<p>Search seven timestamped moments across six clips, or add your own notes. Every result links to the original film and tracking overlay.</p>
+<form id="replay-search">
+<label>What do you want to watch?<input name="query" type="search" maxlength="200" required placeholder="Show me the half-court layup"></label>
+<label>Film<select name="clip" data-clip-options><option value="">All clips</option></select></label>
+<button>Find moments</button>
+</form>
+<label class="meaning-toggle"><input id="meaning-search" type="checkbox"> Meaning search with AI · downloads a model on first use</label>
+<div aria-label="Example searches"><button type="button" data-replay-query="half court layup">A layup</button><button type="button" data-replay-query="fast break">A fast break</button><button type="button" data-replay-query="tracking identity overlap">A tracking ID change</button><button type="button" data-replay-query="shooting gather">Shot preparation</button></div>
+<p id="replay-status" role="status">Search uses written film annotations. Tactical interpretations and jersey identities need explicit labels.</p>
+<div class="replay-grid" id="replay-results"></div>
+<details><summary>Add a moment to your film notebook</summary>
+<p>Pause a clip below, confirm what you see, then record the start and end in seconds relative to that excerpt.</p>
+<form id="moment-form">
+<div class="replay-grid"><label>Clip<select name="clip" data-clip-options></select></label><label>Moment title<input name="title" maxlength="100" required></label></div>
+<div class="replay-grid"><label>Start (seconds)<input name="start" type="number" min="0" step=".01" required></label><label>End (seconds)<input name="end" type="number" min=".01" step=".01" required></label><label>Confirmed jersey number (optional)<input name="jersey" inputmode="numeric" pattern="[0-9]{1,3}" maxlength="3"></label></div>
+<label>What is visible?<textarea name="note" minlength="8" maxlength="500" required rows="3"></textarea></label>
+<label>Search tags, separated by commas<input name="tags" maxlength="400" placeholder="layup, left hand, transition"></label>
+<button>Save moment</button><p id="moment-status" role="status"></p>
+</form>
+<ul id="saved-moments"></ul><button type="button" id="download-moments">Download notes</button>
+</details>
+<details><summary>How the search is evaluated</summary><p>ReplayGPT retrieves text annotations using basketball synonyms, matching-word coverage, and weighted tags. Optional meaning search uses MiniLM embeddings in your browser to find related wording. Similarity is a ranking signal and does not establish that a play happened. It shows up to three supported matches and reports no match when evidence is missing. The diagnostic query set checks clip retrieval and unsupported questions. It measures this small index, with no claim of general video understanding.</p><p><a href="replay-evaluation.json">Search evaluation</a> · <a href="replay-queries.json">Diagnostic queries</a></p></details>
 </section>
 <section><h2>What worked, what missed</h2>
 <p>On three manually labeled frames from the outdoor pickup benchmark, GameLens matched 15 of 16 on-court player boxes at 50% overlap. There were 17 extra detections. Precision was 47% and recall was 94% on this small sample. Spectators and other people can be picked up by the detector. That evaluation measured detection boxes.</p>
